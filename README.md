@@ -1,5 +1,5 @@
-# ReadMe
+## ReadMe
 
-Simple test don't panic 42 !
+Simple test don't _panic_ 42 !
 
 :dance:
