@@ -1,5 +1,10 @@
 ## ReadMe
 
-Simple test don't _panic_ 42 !
+Welcome to this repo!
 
-:see_no_evil::hear_no_evil::speak_no_evil:
+It allows me to store part of my memory.
+You will find there how I proceeded to advance on the infinite path of knowledge :rowboat:
+
+My Leitmotiv: "Answer to the Ultimate Question of Life, the Universe, and Everything" 
+
+:four::two:
