@@ -63,7 +63,7 @@ index 0000000..aae8129
 <details><summary>Click to reveal the user flag</summary>
 <p>
 
-    ```txt
+    ```bash
     THM{0cb4b947043cb5c0486a454b75a10876}
     ```
 </p>
@@ -98,7 +98,7 @@ flag: THM{b801135[Redcated]a44c2e5ad4}
 <details><summary>Click to reveal the root flag</summary>
 <p>
 
-    ```txt
+    ```bash
       THM{b801135794bf1ed3a2aafaa44c2e5ad4}
     ```
 </p>
