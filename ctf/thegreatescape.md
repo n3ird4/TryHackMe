@@ -59,7 +59,8 @@ index 0000000..aae8129
 \ No newline at end of file
 ```
 
-<details><summary>Click to reveal the root flag</summary>
+
+<details><summary>Click to reveal the **user flag**</summary>
 <p>
 
     ```text
@@ -67,6 +68,7 @@ index 0000000..aae8129
     ```
 </p>
 </details>
+
 
 ```bash
 # cd .well-known
@@ -93,7 +95,7 @@ Connection: keep-alive
 flag: THM{b801135[Redcated]a44c2e5ad4}
 ```
 
-<details><summary>Click to reveal the root flag</summary>
+<details><summary>Click to reveal the **root flag**</summary>
 <p>
 
     ```text
