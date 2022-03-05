@@ -112,13 +112,18 @@ uid=1000(namelessone) gid=1000(namelessone) groups=1000(namelessone),4(adm),24(c
 ls
 pics  user.txt
 cat user.txt
-90d6f992585815ff991e68748c414740
+90d6f992[Redcated]8748c414740
 namelessone@anonymous:~$ 
 
 ```
-
-- usert.txt: **90d6f992585815ff991e68748c414740**
-
+<details>
+  <summary>Click to reveal the user flag!</summary>
+  
+  ```bash
+  90d6f992585815ff991e68748c414740
+  ```
+</details>
+ 
 > HINT: This may require you to do some outside research
 
 Cool ! So as usual in this case, [gtfobins](https://gtfobins.github.io/) comes in :point_left:
@@ -147,7 +152,6 @@ Houra :partying_face:
   <summary>Click to reveal the root flag!</summary>
   
   ```bash
-  cat /root/root.txt
   4d930091c31a622a7ed10f27999af363
   ```
 </details>
