@@ -1,6 +1,6 @@
 ## Write-up & Co 
 
-Hello World. Welcome to this repo!
+Heyo Welcome to this repo!
 
 It allows me to store part of my memory and how I proced to advance on the infinite path of knowledge :rowboat: :nerd_face:
 
