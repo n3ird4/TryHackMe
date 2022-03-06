@@ -1,11 +1,37 @@
 # Room: [TheGreatEscape](https://tryhackme.com/room/thegreatescape) 
 #### _Our devs have created an awesome new site. Can you break out of the sandbox?_
 
-:warning: Work in progress :warning:
+:warning: Work in progress...This article will be updated soon :warning:
 
 ## Basic enum:
 
-the `robots.txt` gives us  http://10.10.204.152/exif-util/
+Rustscan
+
+```bash
+PORT     STATE SERVICE REASON
+22/tcp   open  ssh     syn-ack ttl 62
+80/tcp   open  http    syn-ack ttl 62
+2375/tcp open  docker  syn-ack ttl 63
+```
+Nmap
+
+```bash
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh?
+| fingerprint-strings:
+|   GenericLines:
+|_    *!LY, _<
+|_ssh-hostkey: ERROR: Script execution failed (use -d to debug)
+80/tcp open  http    nginx 1.19.6
+| http-robots.txt: 3 disallowed entries
+|_/api/ /exif-util /*.bak.txt$
+|_http-server-header: nginx/1.19.6
+|_http-title: docker-escape-nuxt
+|_http-trane-info: Problem with XML parsing of /evox/about
+
+```
+
+the `robots.txt` has 3 disallowed entries and http://escape.thm/exif-util/
 
 => http://escape.thm/exif-util.bak.txt ...
 
