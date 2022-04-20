@@ -1,7 +1,7 @@
 # Room: [TheGreatEscape](https://tryhackme.com/room/thegreatescape) 
 #### _Our devs have created an awesome new site. Can you break out of the sandbox?_
 
-:warning: Work in progress...This article will be updated soon :warning:
+:warning: Work in progress...This article will be updated ~~soon~~ :warning:
 
 ## Basic enum:
 
@@ -81,7 +81,7 @@ index 0000000..aae8129
 @@ -0,0 +1,3 @@
 +You found the root flag, or did you?
 +
-+THM{0cb4b947[Redcated]b75a10876}
++THM{0cb[REDACTED]876}
 \ No newline at end of file
 ```
 
@@ -112,12 +112,12 @@ Ping /api/fl46 with a HEAD request for a nifty treat.
 Ok fair enough :nerd_face:
 
 ```
-root@X-X-X-X:~# curl -IXHEAD http://plop.thm/api/fl46
+curl -IXHEAD http://plop.thm/api/fl46
 HTTP/1.1 200 OK
 Server: nginx/1.19.6
 Date: Sat, 17 Jul 2021 19:42:15 GMT
 Connection: keep-alive
-flag: THM{b801135[Redcated]a44c2e5ad4}
+flag: THM{b801[REDACTED]5ad4}
 ```
 
 <details>
