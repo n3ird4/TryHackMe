@@ -17,7 +17,7 @@ PORT    STATE SERVICE      REASON
 445/tcp open  microsoft-ds syn-ack ttl 63
 ```
 
-- Samba looks intersting :eye:
+- Samba looks intersting :eyes:
 
 ```bash
 smbclient -N -L \\\\$IP\\   
@@ -47,7 +47,7 @@ getting file \enter.txt of size 273 as enter.txt (1.9 KiloBytes/sec) (average 1.
 
 ```
 
-It shows some juicy info:
+It shows some juicy info :mag:
 
 ```bash
 cat enter.txt      
@@ -182,7 +182,7 @@ wp-config.php: * You can change these at any point in time to invalidate all exi
 
 ## Privesc
 
-I used this password with the scamsite username and...it works ! (FYI: It also worked with the **support** user to connect through wordpress admin panel)
+I used this password with the scamsite username and...it works :trollface: ! (FYI: It also worked with the **support** user to connect through wordpress admin panel)
 So I did the few following steps to get the root flag:
 
 ```bash
