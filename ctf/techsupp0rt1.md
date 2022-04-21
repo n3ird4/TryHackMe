@@ -170,7 +170,7 @@ wp-config.php:define( 'DB_PASSWORD', 'Im{REDACTED}3!' );
 wp-config.php: * You can change these at any point in time to invalidate all existing cookies. This will force all users to have to log in again.
 
 ```
-> The support user was also the one we discovered while quiclky brownsing the wordpress site.
+> The **support** user was also the one we discovered while quickly browsing the /wordpress site.
 
 <details>
   <summary>Click to reveal the DB password!</summary>
@@ -182,7 +182,7 @@ wp-config.php: * You can change these at any point in time to invalidate all exi
 
 ## Privesc
 
-I used this password with the scamsite username and...it works ! (FYI:It also worked with the **support** user to connect trhough wordpress admin panel)
+I used this password with the scamsite username and...it works ! (FYI: It also worked with the **support** user to connect through wordpress admin panel)
 So I did the few following steps to get the root flag:
 
 ```bash
